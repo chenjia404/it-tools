@@ -305,6 +305,7 @@
     "useClipboardItems": true,
     "useCountdown": true,
     "usePreferredReducedTransparency": true,
-    "useSSRWidth": true
+    "useSSRWidth": true,
+    "useTimeAgoIntl": true
   }
 }
