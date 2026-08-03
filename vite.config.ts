@@ -57,8 +57,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       strategies: 'generateSW',
       workbox: {
-        // monaco-editor / oui-data chunks exceed the default 2 MiB precache limit
-        maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
+        // monaco-editor / oui-data / ts.worker chunks exceed the default 2 MiB precache limit
+        maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
       },
       manifest: {
         name: 'IT Tools',
