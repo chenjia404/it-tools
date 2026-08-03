@@ -7,6 +7,10 @@ import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 // Since type guards do not work in template
 
+function getSelectOptions(element: OGSchemaTypeElementSelect) {
+  return element.options as { label: string; value: string }[];
+}
+
 const metadata = ref<{ type: string; [k: string]: any }>({
   'type': 'website',
   'twitter:card': 'summary_large_image',
@@ -77,7 +81,7 @@ const metaTags = computed(() => {
           v-model:value="metadata[key]"
           w-full
           :placeholder="placeholder"
-          :options="(element as OGSchemaTypeElementSelect).options"
+          :options="getSelectOptions(element as OGSchemaTypeElementSelect)"
         />
       </n-input-group>
     </div>

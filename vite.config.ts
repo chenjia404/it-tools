@@ -11,8 +11,8 @@ import Icons from 'unplugin-icons/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
 import { defineConfig } from 'vite';
+import Markdown from 'unplugin-vue-markdown/vite';
 import { VitePWA } from 'vite-plugin-pwa';
-import markdown from 'vite-plugin-vue-markdown';
 import svgLoader from 'vite-svg-loader';
 import { configDefaults } from 'vitest/config';
 
@@ -51,11 +51,15 @@ export default defineConfig({
       include: [/\.vue$/, /\.md$/],
     }),
     vueJsx(),
-    markdown(),
+    Markdown(),
     svgLoader(),
     VitePWA({
       registerType: 'autoUpdate',
       strategies: 'generateSW',
+      workbox: {
+        // monaco-editor / oui-data chunks exceed the default 2 MiB precache limit
+        maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
+      },
       manifest: {
         name: 'IT Tools',
         description: 'Aggregated set of useful tools for developers.',

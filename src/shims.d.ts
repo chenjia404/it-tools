@@ -1,3 +1,15 @@
+declare module 'figue' {
+  export function figue(config: any): {
+    loadEnv: (...args: any[]) => {
+      validate: () => { getConfig: () => any }
+    }
+  };
+}
+
+declare module '@it-tools/oggen' {
+  export function generateMeta(meta: Record<string, any>, options?: Record<string, any>): string;
+}
+
 declare module '*.vue' {
   import type {  ComponentOptions } from 'vue';
   const Component: ComponentOptions;
@@ -8,11 +20,6 @@ declare module '*.md' {
   import type {  ComponentOptions } from 'vue';
   const Component: ComponentOptions;
   export default Component;
-}
-
-declare module 'iarna-toml-esm' {
-  export const parse: (toml: string) => any;
-  export const stringify: (obj: any) => string;
 }
 
 declare module 'emojilib' {

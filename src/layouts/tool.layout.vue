@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { useRoute } from 'vue-router';
-import { useHead } from '@vueuse/head';
-import type { HeadObject } from '@vueuse/head';
+import { useHead } from '@unhead/vue';
 
 import BaseLayout from './base.layout.vue';
 import FavoriteButton from '@/components/FavoriteButton.vue';
@@ -9,7 +8,7 @@ import type { Tool } from '@/tools/tools.types';
 
 const route = useRoute();
 
-const head = computed<HeadObject>(() => ({
+useHead(() => ({
   title: `${route.meta.name} - IT Tools`,
   meta: [
     {
@@ -22,7 +21,6 @@ const head = computed<HeadObject>(() => ({
     },
   ],
 }));
-useHead(head);
 const { t } = useI18n();
 
 const i18nKey = computed<string>(() => route.path.trim().replace('/', ''));

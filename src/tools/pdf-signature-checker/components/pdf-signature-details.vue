@@ -11,6 +11,32 @@ const tableHeaders = {
   pemCertificate: 'PEM certificate',
 };
 
+interface PartyInfo {
+  commonName: string
+  organizationName: string
+  countryName: string
+  localityName: string
+  organizationalUnitName: string
+  stateOrProvinceName: string
+}
+
+interface ValidityPeriod {
+  notBefore: string
+  notAfter: string
+}
+
+function asValidityPeriod(value: unknown): ValidityPeriod {
+  return value as ValidityPeriod;
+}
+
+function asPartyInfo(value: unknown): PartyInfo {
+  return value as PartyInfo;
+}
+
+function asPem(value: unknown): string {
+  return String(value);
+}
+
 const certs = computed(() => signature.value.meta.certs.map((certificate, index) => ({
   ...certificate,
   validityPeriod: {
@@ -29,10 +55,10 @@ const certs = computed(() => signature.value.meta.certs.map((certificate, index)
         <c-key-value-list
           :items="[{
             label: 'Not before',
-            value: value.notBefore,
+            value: asValidityPeriod(value).notBefore,
           }, {
             label: 'Not after',
-            value: value.notAfter,
+            value: asValidityPeriod(value).notAfter,
           }]"
         />
       </template>
@@ -41,22 +67,22 @@ const certs = computed(() => signature.value.meta.certs.map((certificate, index)
         <c-key-value-list
           :items="[{
             label: 'Common name',
-            value: value.commonName,
+            value: asPartyInfo(value).commonName,
           }, {
             label: 'Organization name',
-            value: value.organizationName,
+            value: asPartyInfo(value).organizationName,
           }, {
             label: 'Country name',
-            value: value.countryName,
+            value: asPartyInfo(value).countryName,
           }, {
             label: 'Locality name',
-            value: value.localityName,
+            value: asPartyInfo(value).localityName,
           }, {
             label: 'Organizational unit name',
-            value: value.organizationalUnitName,
+            value: asPartyInfo(value).organizationalUnitName,
           }, {
             label: 'State or province name',
-            value: value.stateOrProvinceName,
+            value: asPartyInfo(value).stateOrProvinceName,
           }]"
         />
       </template>
@@ -65,28 +91,28 @@ const certs = computed(() => signature.value.meta.certs.map((certificate, index)
         <c-key-value-list
           :items="[{
             label: 'Common name',
-            value: value.commonName,
+            value: asPartyInfo(value).commonName,
           }, {
             label: 'Organization name',
-            value: value.organizationName,
+            value: asPartyInfo(value).organizationName,
           }, {
             label: 'Country name',
-            value: value.countryName,
+            value: asPartyInfo(value).countryName,
           }, {
             label: 'Locality name',
-            value: value.localityName,
+            value: asPartyInfo(value).localityName,
           }, {
             label: 'Organizational unit name',
-            value: value.organizationalUnitName,
+            value: asPartyInfo(value).organizationalUnitName,
           }, {
             label: 'State or province name',
-            value: value.stateOrProvinceName,
+            value: asPartyInfo(value).stateOrProvinceName,
           }]"
         />
       </template>
 
       <template #pemCertificate="{ value }">
-        <c-modal-value :value="value" label="View PEM cert">
+        <c-modal-value :value="asPem(value)" label="View PEM cert">
           <template #value>
             <div break-all text-xs>
               {{ value }}

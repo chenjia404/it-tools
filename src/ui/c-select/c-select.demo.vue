@@ -19,7 +19,7 @@ const value = ref('');
   <c-select v-for="size in sizes" :key="size" v-model:value="value" :options="optionsA" :size="size" searchable mb-2 />
 
   <h2>Big list</h2>
-  <c-select v-model:value="value" :options="optionsBig" searchable />
+  <c-select :options="optionsBig" searchable />
 
   <h2>Empty</h2>
   <c-select :options="[]" />

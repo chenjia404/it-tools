@@ -4,19 +4,18 @@ import {
   capitalCase,
   constantCase,
   dotCase,
-  headerCase,
+  kebabCase,
   noCase,
-  paramCase,
   pascalCase,
   pathCase,
   sentenceCase,
   snakeCase,
+  trainCase,
 } from 'change-case';
 import InputCopyable from '../../components/InputCopyable.vue';
+import { createCaseOptions } from './case-converter.models';
 
-const baseConfig = {
-  stripRegexp: /[^A-Za-zÀ-ÖØ-öø-ÿ]+/gi,
-};
+const caseOptions = createCaseOptions();
 
 const input = ref('lorem ipsum dolor sit amet');
 
@@ -31,48 +30,49 @@ const formats = computed(() => [
   },
   {
     label: 'Camelcase:',
-    value: camelCase(input.value, baseConfig),
+    value: camelCase(input.value, caseOptions),
   },
   {
     label: 'Capitalcase:',
-    value: capitalCase(input.value, baseConfig),
+    value: capitalCase(input.value, caseOptions),
   },
   {
     label: 'Constantcase:',
-    value: constantCase(input.value, baseConfig),
+    value: constantCase(input.value, caseOptions),
   },
   {
     label: 'Dotcase:',
-    value: dotCase(input.value, baseConfig),
+    value: dotCase(input.value, caseOptions),
   },
   {
     label: 'Headercase:',
-    value: headerCase(input.value, baseConfig),
+    value: trainCase(input.value, caseOptions),
   },
   {
     label: 'Nocase:',
-    value: noCase(input.value, baseConfig),
+    value: noCase(input.value, caseOptions),
   },
   {
     label: 'Paramcase:',
-    value: paramCase(input.value, baseConfig),
+    value: kebabCase(input.value, caseOptions),
   },
   {
     label: 'Pascalcase:',
-    value: pascalCase(input.value, baseConfig),
+    value: pascalCase(input.value, caseOptions),
   },
   {
     label: 'Pathcase:',
-    value: pathCase(input.value, baseConfig),
+    value: pathCase(input.value, caseOptions),
   },
   {
     label: 'Sentencecase:',
-    value: sentenceCase(input.value, baseConfig),
+    value: sentenceCase(input.value, caseOptions),
   },
   {
     label: 'Snakecase:',
-    value: snakeCase(input.value, baseConfig),
+    value: snakeCase(input.value, caseOptions),
   },
+
   {
     label: 'Mockingcase:',
     value: input.value
@@ -83,9 +83,9 @@ const formats = computed(() => [
 ]);
 
 const inputLabelAlignmentConfig = {
-  labelPosition: 'left',
+  labelPosition: 'left' as const,
   labelWidth: '120px',
-  labelAlign: 'right',
+  labelAlign: 'right' as const,
 };
 </script>
 
@@ -106,8 +106,8 @@ const inputLabelAlignmentConfig = {
       :key="format.label"
       :value="format.value"
       :label="format.label"
-      v-bind="inputLabelAlignmentConfig"
       mb-1
+      v-bind="inputLabelAlignmentConfig"
     />
   </c-card>
 </template>
