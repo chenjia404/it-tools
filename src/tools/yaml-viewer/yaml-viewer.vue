@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Ref } from 'vue';
 import yaml from 'yaml';
 import { useStorage } from '@vueuse/core';
 import { formatYaml } from './yaml-models';
@@ -8,7 +9,7 @@ import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const inputElement = ref<HTMLElement>();
 
-const rawYaml = useStorage('yaml-prettify:raw-yaml', '');
+const rawYaml = useStorage<string>('yaml-prettify:raw-yaml', '') as Ref<string>;
 const indentSize = useStorage('yaml-prettify:indent-size', 2);
 const sortKeys = useStorage('yaml-prettify:sort-keys', false);
 

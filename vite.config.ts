@@ -23,7 +23,6 @@ export default defineConfig({
   plugins: [
     VueI18n({
       runtimeOnly: true,
-      jitCompilation: true,
       compositionOnly: true,
       fullInstall: true,
       strictMessage: false,
@@ -99,6 +98,8 @@ export default defineConfig({
       extensions: ['vue', 'md'],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       resolvers: [NaiveUiResolver(), IconsResolver({ prefix: 'icon' })],
+      dts: true,
+      dtsTsx: false,
     }),
     Unocss(),
   ],

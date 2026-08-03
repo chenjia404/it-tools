@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import type { Ref } from 'vue';
 import { convertBase } from '../integer-base-converter/integer-base-converter.model';
 import { ipv4ToInt, ipv4ToIpv6, isValidIpv4 } from './ipv4-address-converter.service';
 import { useValidation } from '@/composable/validation';
 
-const rawIpAddress = useStorage('ipv4-converter:ip', '192.168.1.1');
+const rawIpAddress = useStorage<string>('ipv4-converter:ip', '192.168.1.1') as Ref<string>;
 
 const convertedSections = computed(() => {
   const ipInDecimal = ipv4ToInt({ ip: rawIpAddress.value });

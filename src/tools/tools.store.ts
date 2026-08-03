@@ -1,9 +1,11 @@
-import { type MaybeRef, get, useStorage } from '@vueuse/core';
+import { get, useStorage } from '@vueuse/core';
 import { defineStore } from 'pinia';
 import type { Ref } from 'vue';
 import _ from 'lodash';
 import type { Tool, ToolCategory, ToolWithCategory } from './tools.types';
 import { toolsWithCategory } from './index';
+
+type MaybeRef<T> = T | Ref<T>;
 
 export const useToolStore = defineStore('tools', () => {
   const favoriteToolsName = useStorage('favoriteToolsName', []) as Ref<string[]>;
