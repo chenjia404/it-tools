@@ -1,11 +1,3 @@
-declare module 'figue' {
-  export function figue(config: any): {
-    loadEnv: (...args: any[]) => {
-      validate: () => { getConfig: () => any };
-    };
-  };
-}
-
 declare module '@it-tools/oggen' {
   export function generateMeta(meta: Record<string, any>, options?: Record<string, any>): string;
 }

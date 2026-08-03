@@ -1,5 +1,5 @@
 import { resolve } from 'node:path';
-import { URL, fileURLToPath } from 'node:url';
+import { fileURLToPath, URL } from 'node:url';
 
 import VueI18n from '@intlify/unplugin-vue-i18n/vite';
 import vue from '@vitejs/plugin-vue';
@@ -18,6 +18,8 @@ import { configDefaults } from 'vitest/config';
 
 const baseUrl = process.env.BASE_URL ?? '/';
 
+const rootDir = fileURLToPath(new URL('.', import.meta.url));
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -27,7 +29,7 @@ export default defineConfig({
       fullInstall: true,
       strictMessage: false,
       include: [
-        resolve(__dirname, 'locales/**'),
+        resolve(rootDir, 'locales/**'),
       ],
     }),
     AutoImport({
