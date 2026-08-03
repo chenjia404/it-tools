@@ -13,11 +13,16 @@ const theme = computed(() => (styleStore.isDarkTheme ? darkTheme : null));
 const themeOverrides = computed(() => (styleStore.isDarkTheme ? darkThemeOverrides : lightThemeOverrides));
 
 const { locale } = useI18n();
+const localeStorage = useStorage<string>('locale', locale.value);
 
-syncRef(
-  locale,
-  useStorage('locale', locale),
-);
+watch(locale, (value) => {
+  localeStorage.value = value;
+});
+watch(localeStorage, (value) => {
+  if (value) {
+    locale.value = value;
+  }
+});
 </script>
 
 <template>

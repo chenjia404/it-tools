@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Ref } from 'vue';
 import JSON5 from 'json5';
 import { useStorage } from '@vueuse/core';
 import { formatJson } from './json.models';
@@ -8,7 +9,7 @@ import TextareaCopyable from '@/components/TextareaCopyable.vue';
 
 const inputElement = ref<HTMLElement>();
 
-const rawJson = useStorage('json-prettify:raw-json', '{"hello": "world", "foo": "bar"}');
+const rawJson = useStorage<string>('json-prettify:raw-json', '{"hello": "world", "foo": "bar"}') as Ref<string>;
 const indentSize = useStorage('json-prettify:indent-size', 3);
 const sortKeys = useStorage('json-prettify:sort-keys', true);
 const cleanJson = computed(() => withDefaultOnError(() => formatJson({ rawJson, indentSize, sortKeys }), ''));

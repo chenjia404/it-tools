@@ -1,5 +1,8 @@
-import { type MaybeRef, get } from '@vueuse/core';
+import { get } from '@vueuse/core';
+import type { Ref } from 'vue';
 import JSON5 from 'json5';
+
+type MaybeRef<T> = T | Ref<T>;
 
 export { sortObjectKeys, formatJson };
 

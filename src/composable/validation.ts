@@ -1,6 +1,9 @@
-import { type MaybeRef, get } from '@vueuse/core';
+import { get } from '@vueuse/core';
+import type { Ref } from 'vue';
 import _ from 'lodash';
-import { type Ref, reactive, watch } from 'vue';
+import { reactive, watch } from 'vue';
+
+type MaybeRef<T> = T | Ref<T>;
 
 type ValidatorReturnType = unknown;
 type GetErrorMessageReturnType = string;
