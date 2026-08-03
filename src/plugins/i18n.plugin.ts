@@ -2,10 +2,15 @@ import type { Plugin } from 'vue';
 import messages from '@intlify/unplugin-vue-i18n/messages';
 import { get } from '@vueuse/core';
 import { createI18n } from 'vue-i18n';
+import { getInitialLocale } from '@/modules/i18n/i18n.models';
+
+const availableLocales = Object.keys(messages ?? {});
+const initialLocale = getInitialLocale(availableLocales);
 
 const i18n = createI18n({
   legacy: false,
-  locale: 'en',
+  locale: initialLocale,
+  fallbackLocale: 'en',
   messages,
 });
 

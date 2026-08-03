@@ -58,8 +58,34 @@ export default defineConfig({
       registerType: 'autoUpdate',
       strategies: 'generateSW',
       workbox: {
-        // monaco-editor / oui-data / ts.worker chunks exceed the default 2 MiB precache limit
-        maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
+        // 只预缓存应用壳；工具/Monaco 等大 chunk 走 runtime cache，避免首访卡顿
+        globPatterns: [
+          'index.html',
+          'manifest.webmanifest',
+          'assets/index-*.js',
+          'assets/index-*.css',
+          'favicon*.png',
+          'android-chrome-*.png',
+          'apple-touch-icon.png',
+        ],
+        navigateFallback: 'index.html',
+        cleanupOutdatedCaches: true,
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.pathname.startsWith('/assets/'),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'assets-cache',
+              expiration: {
+                maxEntries: 400,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+        ],
       },
       manifest: {
         name: 'IT Tools',

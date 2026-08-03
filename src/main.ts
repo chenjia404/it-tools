@@ -14,7 +14,14 @@ import { plausible } from './plugins/plausible.plugin';
 import router from './router';
 import 'virtual:uno.css';
 
-registerSW();
+// 等首屏就绪后再注册 SW，避免与首屏资源争抢带宽
+const registerServiceWorker = () => registerSW({ immediate: true });
+if ('requestIdleCallback' in window) {
+  window.requestIdleCallback(() => registerServiceWorker(), { timeout: 3000 });
+}
+else {
+  window.addEventListener('load', registerServiceWorker);
+}
 
 const app = createApp(App);
 

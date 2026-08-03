@@ -2,6 +2,7 @@
 import { darkTheme, NGlobalStyle, NMessageProvider, NNotificationProvider } from 'naive-ui';
 import { RouterView, useRoute } from 'vue-router';
 import { layouts } from './layouts';
+import { useUserLocale } from './modules/i18n/useUserLocale';
 import { useStyleStore } from './stores/style.store';
 import { darkThemeOverrides, lightThemeOverrides } from './themes';
 
@@ -12,17 +13,8 @@ const styleStore = useStyleStore();
 const theme = computed(() => (styleStore.isDarkTheme ? darkTheme : null));
 const themeOverrides = computed(() => (styleStore.isDarkTheme ? darkThemeOverrides : lightThemeOverrides));
 
-const { locale } = useI18n();
-const localeStorage = useStorage<string>('locale', locale.value);
-
-watch(locale, (value) => {
-  localeStorage.value = value;
-});
-watch(localeStorage, (value) => {
-  if (value) {
-    locale.value = value;
-  }
-});
+// 初始化全局语言偏好同步（跨标签页）；须在根组件尽早调用
+useUserLocale();
 </script>
 
 <template>
