@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { Ref } from 'vue';
-import { Exchange } from '@vicons/tabler';
-import { isValidIpv4 } from '../ipv4-address-converter/ipv4-address-converter.service';
 import type { Ipv4RangeExpanderResult } from './ipv4-range-expander.types';
+import { Exchange } from '@vicons/tabler';
+import { useValidation } from '@/composable/validation';
+import { isValidIpv4 } from '../ipv4-address-converter/ipv4-address-converter.service';
 import { calculateCidr } from './ipv4-range-expander.service';
 import ResultRow from './result-row.vue';
-import { useValidation } from '@/composable/validation';
 
 const rawStartAddress = useStorage<string>('ipv4-range-expander:startAddress', '192.168.1.1') as Ref<string>;
 const rawEndAddress = useStorage<string>('ipv4-range-expander:endAddress', '192.168.6.255') as Ref<string>;
@@ -13,9 +13,9 @@ const rawEndAddress = useStorage<string>('ipv4-range-expander:endAddress', '192.
 const result = computed(() => calculateCidr({ startIp: rawStartAddress.value, endIp: rawEndAddress.value }));
 
 const calculatedValues: {
-  label: string
-  getOldValue: (result: Ipv4RangeExpanderResult | undefined) => string | undefined
-  getNewValue: (result: Ipv4RangeExpanderResult | undefined) => string | undefined
+  label: string;
+  getOldValue: (result: Ipv4RangeExpanderResult | undefined) => string | undefined;
+  getNewValue: (result: Ipv4RangeExpanderResult | undefined) => string | undefined;
 }[] = [
   {
     label: 'Start address',

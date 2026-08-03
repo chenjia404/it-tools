@@ -1,6 +1,7 @@
-import { get } from '@vueuse/core';
+import type { QRCodeToDataURLOptions } from 'qrcode';
 import type { Ref } from 'vue';
-import QRCode, { type QRCodeToDataURLOptions } from 'qrcode';
+import { get } from '@vueuse/core';
+import QRCode from 'qrcode';
 import { isRef, ref, watch } from 'vue';
 
 type MaybeRef<T> = T | Ref<T>;
@@ -38,26 +39,26 @@ export const EAPPhase2Methods = [
 export type EAPPhase2Method = typeof EAPPhase2Methods[number];
 
 interface IWifiQRCodeOptions {
-  ssid: MaybeRef<string>
-  password: MaybeRef<string>
-  eapMethod: MaybeRef<EAPMethod>
-  isHiddenSSID: MaybeRef<boolean>
-  eapAnonymous: MaybeRef<boolean>
-  eapIdentity: MaybeRef<string>
-  eapPhase2Method: MaybeRef<EAPPhase2Method>
-  color: { foreground: MaybeRef<string>; background: MaybeRef<string> }
-  options?: QRCodeToDataURLOptions
+  ssid: MaybeRef<string>;
+  password: MaybeRef<string>;
+  eapMethod: MaybeRef<EAPMethod>;
+  isHiddenSSID: MaybeRef<boolean>;
+  eapAnonymous: MaybeRef<boolean>;
+  eapIdentity: MaybeRef<string>;
+  eapPhase2Method: MaybeRef<EAPPhase2Method>;
+  color: { foreground: MaybeRef<string>; background: MaybeRef<string> };
+  options?: QRCodeToDataURLOptions;
 }
 
 interface GetQrCodeTextOptions {
-  ssid: string
-  password: string
-  encryption: WifiEncryption
-  eapMethod: EAPMethod
-  isHiddenSSID: boolean
-  eapAnonymous: boolean
-  eapIdentity: string
-  eapPhase2Method: EAPPhase2Method
+  ssid: string;
+  password: string;
+  encryption: WifiEncryption;
+  eapMethod: EAPMethod;
+  isHiddenSSID: boolean;
+  eapAnonymous: boolean;
+  eapIdentity: string;
+  eapPhase2Method: EAPPhase2Method;
 }
 
 function escapeString(str: string) {

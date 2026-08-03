@@ -1,8 +1,8 @@
 declare module 'figue' {
   export function figue(config: any): {
     loadEnv: (...args: any[]) => {
-      validate: () => { getConfig: () => any }
-    }
+      validate: () => { getConfig: () => any };
+    };
   };
 }
 
@@ -11,13 +11,15 @@ declare module '@it-tools/oggen' {
 }
 
 declare module '*.vue' {
-  import type {  ComponentOptions } from 'vue';
+  import type { ComponentOptions } from 'vue';
+
   const Component: ComponentOptions;
   export default Component;
 }
 
 declare module '*.md' {
-  import type {  ComponentOptions } from 'vue';
+  import type { ComponentOptions } from 'vue';
+
   const Component: ComponentOptions;
   export default Component;
 }
@@ -37,12 +39,12 @@ declare module 'unicode-emoji-json' {
     skin_tone_support: boolean;
     skin_tone_support_unicode_version: string;
   }>;
-  
+
   export default emoji;
 }
 
 declare module 'pdf-signature-reader' {
-  const verifySignature: (pdf: ArrayBuffer) => ({signatures: SignatureInfo[]});
+  const verifySignature: (pdf: ArrayBuffer) => ({ signatures: SignatureInfo[] });
 
   export default verifySignature;
 }

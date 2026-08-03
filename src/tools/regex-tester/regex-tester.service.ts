@@ -1,17 +1,17 @@
 interface RegExpGroupIndices {
-  [name: string]: [number, number]
+  [name: string]: [number, number];
 }
 interface RegExpIndices extends Array<[number, number]> {
-  groups: RegExpGroupIndices
+  groups: RegExpGroupIndices;
 }
 interface RegExpExecArrayWithIndices extends RegExpExecArray {
-  indices: RegExpIndices
+  indices: RegExpIndices;
 }
 interface GroupCapture {
-  name: string
-  value: string
-  start: number
-  end: number
+  name: string;
+  value: string;
+  start: number;
+  end: number;
 };
 
 export function matchRegex(regex: string, text: string, flags: string) {
@@ -30,7 +30,7 @@ export function matchRegex(regex: string, text: string, flags: string) {
     const indices = match.indices;
     const captures: Array<GroupCapture> = [];
     Object.entries(match).forEach(([captureName, captureValue]) => {
-      if (captureName !== '0' && captureName.match(/\d+/)) {
+      if (captureName !== '0' && /\d+/.test(captureName)) {
         captures.push({
           name: captureName,
           value: captureValue,

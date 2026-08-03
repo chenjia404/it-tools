@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { UseValidationRule } from '@/composable/validation';
 import JSON5 from 'json5';
 import { withDefaultOnError } from '../../utils/defaults';
 import { stringifyToml } from '../toml-to-json/toml.services';
-import type { UseValidationRule } from '@/composable/validation';
 
 const convertJsonToToml = (value: string) => [stringifyToml(JSON5.parse(value))].flat().join('\n').trim();
 

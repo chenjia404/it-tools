@@ -1,5 +1,5 @@
-import { get } from '@vueuse/core';
 import type { Ref } from 'vue';
+import { get } from '@vueuse/core';
 import yaml from 'yaml';
 
 type MaybeRef<T> = T | Ref<T>;
@@ -11,9 +11,9 @@ function formatYaml({
   sortKeys = false,
   indentSize = 2,
 }: {
-  rawYaml: MaybeRef<string>
-  sortKeys?: MaybeRef<boolean>
-  indentSize?: MaybeRef<number>
+  rawYaml: MaybeRef<string>;
+  sortKeys?: MaybeRef<boolean>;
+  indentSize?: MaybeRef<number>;
 }) {
   const parsedYaml = yaml.parse(get(rawYaml));
 

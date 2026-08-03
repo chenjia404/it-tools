@@ -1,19 +1,19 @@
 <script setup lang="ts" generic="T extends unknown">
-import { useAppTheme } from '../theme/themes';
 import type { CLabelProps } from '../c-label/c-label.types';
 import type { CSelectOption } from './c-select.types';
-import { useTheme } from './c-select.theme';
-import { clamp } from '@/modules/shared/number.models';
 import { useFuzzySearch } from '@/composable/fuzzySearch';
+import { clamp } from '@/modules/shared/number.models';
+import { useAppTheme } from '../theme/themes';
+import { useTheme } from './c-select.theme';
 
 const props = withDefaults(
   defineProps<{
-    options?: CSelectOption<T>[] | string[]
-    value?: T
-    placeholder?: string
-    size?: 'small' | 'medium' | 'large'
-    searchable?: boolean
-  } & CLabelProps >(),
+    options?: CSelectOption<T>[] | string[];
+    value?: T;
+    placeholder?: string;
+    size?: 'small' | 'medium' | 'large';
+    searchable?: boolean;
+  } & CLabelProps>(),
   {
     options: () => [],
     value: undefined,

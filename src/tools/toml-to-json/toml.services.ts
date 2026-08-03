@@ -1,7 +1,7 @@
 import { parse as parseTomlLib, stringify as stringifyTomlLib } from 'smol-toml';
 import { isNotThrowing } from '../../utils/boolean';
 
-export { isValidToml, parseToml, stringifyToml, serializeTomlToJson };
+export { isValidToml, parseToml, serializeTomlToJson, stringifyToml };
 
 const PARSE_OPTIONS = { integersAsBigInt: 'asNeeded' as const };
 

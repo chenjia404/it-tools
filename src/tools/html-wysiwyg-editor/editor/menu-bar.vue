@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Editor } from '@tiptap/vue-3';
+import type { Component } from 'vue';
 import {
   ArrowBack,
   ArrowForwardUp,
@@ -18,19 +19,18 @@ import {
   Strikethrough,
   TextWrap,
 } from '@vicons/tabler';
-import type { Component } from 'vue';
 import MenuBarItem from './menu-bar-item.vue';
 
 const props = defineProps<{ editor: Editor }>();
 const { editor } = toRefs(props);
 
-type MenuItem =
-  | {
-    icon: Component
-    title: string
-    action: () => void
-    isActive?: () => boolean
-    type: 'button'
+type MenuItem
+  = | {
+    icon: Component;
+    title: string;
+    action: () => void;
+    isActive?: () => boolean;
+    type: 'button';
   }
   | { type: 'divider' };
 
