@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { Ref } from 'vue';
-import yaml from 'yaml';
 import { useStorage } from '@vueuse/core';
-import { formatYaml } from './yaml-models';
-import { withDefaultOnError } from '@/utils/defaults';
-import { useValidation } from '@/composable/validation';
+import yaml from 'yaml';
 import TextareaCopyable from '@/components/TextareaCopyable.vue';
+import { useValidation } from '@/composable/validation';
+import { withDefaultOnError } from '@/utils/defaults';
+import { formatYaml } from './yaml-models';
 
 const inputElement = ref<HTMLElement>();
 

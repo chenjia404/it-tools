@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { UseValidationRule } from '@/composable/validation';
 import { parse as parseYaml } from 'yaml';
 import { withDefaultOnError } from '../../utils/defaults';
 import { stringifyToml } from '../toml-to-json/toml.services';
-import type { UseValidationRule } from '@/composable/validation';
 
 const convertYamlToToml = (value: string) => [stringifyToml(parseYaml(value))].flat().join('\n').trim();
 

@@ -9,7 +9,7 @@ function createCaseOptions() {
   return {
     split: (value: string) =>
       splitCase(value)
-        .flatMap(token => token.split(/[^A-Za-zÀ-ÖØ-öø-ÿ]+/gi))
+        .flatMap(token => token.split(/[^A-ZØ-öø-ÿ]+/gi))
         .filter(Boolean),
   };
 }

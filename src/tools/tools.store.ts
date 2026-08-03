@@ -1,8 +1,8 @@
-import { get, useStorage } from '@vueuse/core';
-import { defineStore } from 'pinia';
 import type { Ref } from 'vue';
-import _ from 'lodash';
 import type { Tool, ToolCategory, ToolWithCategory } from './tools.types';
+import { get, useStorage } from '@vueuse/core';
+import _ from 'lodash';
+import { defineStore } from 'pinia';
 import { toolsWithCategory } from './index';
 
 type MaybeRef<T> = T | Ref<T>;

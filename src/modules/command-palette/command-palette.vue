@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
-import _ from 'lodash';
-import { useCommandPaletteStore } from './command-palette.store';
 import type { PaletteOption } from './command-palette.types';
+import _ from 'lodash';
+import { storeToRefs } from 'pinia';
+import { useCommandPaletteStore } from './command-palette.store';
 
 const isModalOpen = ref(false);
 const inputRef = ref();
@@ -118,7 +118,7 @@ function activateOption(option: PaletteOption) {
         <icon-mdi-search />
         {{ $t('search.label') }}
 
-        <span hidden flex-1 border border-current border-op-40 rounded border-solid px-5px py-3px sm:inline>
+        <span flex-1 border border-current border-op-40 rounded border-solid px-5px py-3px hidden sm:inline>
           {{ isMac ? 'Cmd' : 'Ctrl' }}&nbsp;+&nbsp;K
         </span>
       </span>

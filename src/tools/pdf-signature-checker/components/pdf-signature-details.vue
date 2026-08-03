@@ -12,17 +12,17 @@ const tableHeaders = {
 };
 
 interface PartyInfo {
-  commonName: string
-  organizationName: string
-  countryName: string
-  localityName: string
-  organizationalUnitName: string
-  stateOrProvinceName: string
+  commonName: string;
+  organizationName: string;
+  countryName: string;
+  localityName: string;
+  organizationalUnitName: string;
+  stateOrProvinceName: string;
 }
 
 interface ValidityPeriod {
-  notBefore: string
-  notAfter: string
+  notBefore: string;
+  notAfter: string;
 }
 
 function asValidityPeriod(value: unknown): ValidityPeriod {

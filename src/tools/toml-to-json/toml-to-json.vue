@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import type { UseValidationRule } from '@/composable/validation';
 import { withDefaultOnError } from '../../utils/defaults';
 import { isValidToml, parseToml, serializeTomlToJson } from './toml.services';
-import type { UseValidationRule } from '@/composable/validation';
 
 const transformer = (value: string) => value === '' ? '' : withDefaultOnError(() => serializeTomlToJson(parseToml(value)), '');
 

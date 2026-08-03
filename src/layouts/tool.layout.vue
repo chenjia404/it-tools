@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { useRoute } from 'vue-router';
+import type { Tool } from '@/tools/tools.types';
 import { useHead } from '@unhead/vue';
 
-import BaseLayout from './base.layout.vue';
+import { useRoute } from 'vue-router';
 import FavoriteButton from '@/components/FavoriteButton.vue';
-import type { Tool } from '@/tools/tools.types';
+import BaseLayout from './base.layout.vue';
 
 const route = useRoute();
 
