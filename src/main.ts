@@ -15,8 +15,9 @@ import router from './router';
 import 'virtual:uno.css';
 
 // 等首屏就绪后再注册 SW，避免与首屏资源争抢带宽
+// 使用 typeof，避免 `'requestIdleCallback' in window` 在 TS 中把 else 分支的 window 收窄为 never
 const registerServiceWorker = () => registerSW({ immediate: true });
-if ('requestIdleCallback' in window) {
+if (typeof window.requestIdleCallback === 'function') {
   window.requestIdleCallback(() => registerServiceWorker(), { timeout: 3000 });
 }
 else {
