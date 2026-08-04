@@ -5,7 +5,8 @@ ENV CI=true
 ENV NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
 WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
-RUN npm install -g pnpm && pnpm i --frozen-lockfile
+# 固定 packageManager 版本，避免 npm -g 装到最新 pnpm 后校验 linux 二进制失败
+RUN corepack enable && corepack prepare pnpm@9.15.9 --activate && pnpm i --frozen-lockfile
 COPY . .
 RUN pnpm build
 
